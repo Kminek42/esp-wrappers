@@ -29,7 +29,6 @@ esp_err_t precise_freq_task_init(TaskFunction_t callback, uint32_t frequency_hz,
     uint32_t stack_depth, UBaseType_t priority, BaseType_t core_id) {
 
     if (callback == NULL || frequency_hz == 0) {
-        ESP_LOGE(TAG, "Invalid parameters: callback cannot be NULL and frequency cannot be 0.");
         return ESP_ERR_INVALID_ARG;
     }
 
@@ -38,7 +37,6 @@ esp_err_t precise_freq_task_init(TaskFunction_t callback, uint32_t frequency_hz,
     // Create the binary semaphore
     timer_semaphore = xSemaphoreCreateBinary();
     if (timer_semaphore == NULL) {
-        ESP_LOGE(TAG, "Failed to create semaphore.");
         return ESP_FAIL;
     }
 
