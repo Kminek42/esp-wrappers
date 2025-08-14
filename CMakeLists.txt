@@ -1,6 +1,7 @@
 idf_component_register(
     SRCS
         "potentiometer_manager.c"
+        "precise_freq_task.c"
         "uart_manager.c"
     INCLUDE_DIRS
         "."
