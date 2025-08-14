@@ -18,6 +18,10 @@ void uart_manager_init(void) {
     uart_set_pin(UART_NUM, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 }
 
+int uart_manager_receive_data(uint8_t *data, size_t length) {
+    return uart_read_bytes(UART_NUM, data, 1, portMAX_DELAY);
+}
+
 void uart_manager_send_instruction(uint8_t parameter, uint8_t value) {
     uint8_t data[2] = { 0 };
     data[0] = parameter + 128;

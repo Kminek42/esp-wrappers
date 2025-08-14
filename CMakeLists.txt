@@ -1,10 +1,9 @@
 idf_component_register(
     SRCS
-        "potentiometer_manager/potentiometer_manager.c"
-        "uart_manager/uart_manager.c"
+        "potentiometer_manager.c"
+        "uart_manager.c"
     INCLUDE_DIRS
-        "potentiometer_manager"
-        "uart_manager"
+        "."
     PRIV_INCLUDE_DIRS
         ""
     REQUIRES
