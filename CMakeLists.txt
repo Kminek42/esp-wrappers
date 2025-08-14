@@ -7,4 +7,5 @@ idf_component_register(
     PRIV_INCLUDE_DIRS
         ""
     REQUIRES
+        driver
 )
