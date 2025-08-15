@@ -4,9 +4,10 @@
 
 float* readings;
 uint16_t readings_num;
-float hysteresis;
+float reading_hysteresis;
 
 void potentiometer_manager_init(uint16_t potentiometer_num, float hysteresis) {
+    reading_hysteresis = hysteresis;
     readings = (float*)malloc(potentiometer_num * sizeof(float));
     readings_num = potentiometer_num;
 }
@@ -15,7 +16,7 @@ void potentiometer_manager_monitor_potentiometers(float* raw_readings, void(*not
     for (uint16_t i = 0; i < readings_num; i++) {
         float raw_reading = raw_readings[i];
         float last_reading = readings[i];
-        if (ABS(raw_reading - last_reading) > hysteresis) {
+        if (ABS(raw_reading - last_reading) > reading_hysteresis) {
             readings[i] = raw_reading;
             notify_change(i, last_reading);
         }
