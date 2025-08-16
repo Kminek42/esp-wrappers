@@ -1,11 +1,9 @@
 #include "uart_manager.h"
 
 #define UART_NUM UART_NUM_1
-#define UART_TX_PIN 13
-#define UART_RX_PIN 16
 #define UART_BUF_SIZE 1024
 
-void uart_manager_init(void) {
+void uart_manager_init(uart_manager_config_t config) {
     const uart_config_t uart_config = {
         .baud_rate = 31250,
         .data_bits = UART_DATA_8_BITS,
@@ -15,7 +13,7 @@ void uart_manager_init(void) {
     };
     uart_driver_install(UART_NUM, UART_BUF_SIZE * 2, 0, 0, NULL, 0);
     uart_param_config(UART_NUM, &uart_config);
-    uart_set_pin(UART_NUM, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    uart_set_pin(UART_NUM, config.tx_pin, config.rx_pin, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 }
 
 int uart_manager_receive_data(uint8_t *data, size_t length) {
