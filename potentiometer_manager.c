@@ -18,7 +18,7 @@ void potentiometer_manager_monitor_potentiometers(float* raw_readings, void(*not
         float last_reading = readings[i];
         if (ABS(raw_reading - last_reading) > reading_hysteresis) {
             readings[i] = raw_reading;
-            notify_change(i, last_reading);
+            notify_change(i, raw_reading);
         }
     }
 }
